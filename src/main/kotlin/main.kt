@@ -4,6 +4,13 @@ fun main(){
     println(myAcc.withdraw(100.50))
     println(myAcc.details())
 
+
+    var myOtherAccount=SavingsAccount(8911011,"Moher",450.25,3)
+    myOtherAccount.deposit(50.5)
+    myOtherAccount.withdraw(100.5)
+    println( myOtherAccount.withdrawals)
+    myOtherAccount.details()
+
     var veg=Product("Carrots",3.5,50,"groceries")
     var soap=Product("Dettol",5.5,90,"hygiene")
     var pencil=Product("HB",0.5,30,"other")
@@ -49,11 +56,16 @@ open class CurrentAccount(var accNo:Int,var accName:String,var balance:Double){
 //than 4 for it to allow one to withdraw money from the account. It also
 //increments the withdrawals attribute after a successful withdrawal
 
-//class SavingAccount(accNo:Int,accName:String,balance:Double,withdrawals:Int):CurrentAccount(accNo,accName,balance){
-//    override fun withdraw(){
-//        var totalw=
-//    }
-//}
+
+class SavingsAccount(accNo:Int,accName: String,balance: Double, var withdrawals:Int):CurrentAccount(accNo,accName,balance){
+    override fun withdraw(amount: Double) {
+        if (withdrawals<4){
+            balance-=amount
+        }
+        println(balance)
+        withdrawals++
+    }
+}
 
 //3.A product is represented by a data class with these attributes: name,
 //weight, price, category. Category can either be groceries, hygiene or
